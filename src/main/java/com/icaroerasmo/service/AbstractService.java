@@ -31,7 +31,7 @@ public class AbstractService<T extends AbstractEntity, R extends Dto<T>> extends
             throw new IllegalArgumentException("Entity cannot be null");
         }
 
-        T entity = (T) genericMapper.map(dto);
+        T entity = genericMapper.map(dto);
 
         return genericMapper.map(repository.save(entity));
     }
@@ -62,6 +62,6 @@ public class AbstractService<T extends AbstractEntity, R extends Dto<T>> extends
             MultiValueMap<String, String> queryParams,
             @PageableDefault(direction = Sort.Direction.DESC, sort = "createdAt") Pageable pageable
     ) {
-        return (Page<R>) genericMapper.map(jpaSpecificationExecutor.findAll(getSpecification(queryParams), pageable));
+        return genericMapper.map(jpaSpecificationExecutor.findAll(getSpecification(queryParams), pageable));
     }
 }
