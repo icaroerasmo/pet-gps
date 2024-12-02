@@ -14,10 +14,13 @@ public interface Controller<T extends AbstractEntity, R extends Dto<T>> {
     R save(@RequestBody R r);
 
     @PutMapping("/{id}")
-    R update(@PathVariable Long id, @RequestBody R r);
+    R update(@PathVariable UUID id, @RequestBody R r);
 
     @DeleteMapping("/{id}")
     void delete(@PathVariable UUID id);
+
+    @GetMapping("/{id}")
+    R get(@PathVariable UUID id);
 
     @GetMapping
     Page<R> list(@RequestParam MultiValueMap<String, String> queryParams, Pageable pageable);

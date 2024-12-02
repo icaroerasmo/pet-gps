@@ -36,7 +36,7 @@ public class AbstractService<T extends AbstractEntity, R extends Dto<T>> extends
         return genericMapper.map(repository.save(entity));
     }
 
-    public R update(R dto) {
+    public R update(UUID id, R dto) {
 
         if(dto == null) {
             throw new IllegalArgumentException("Entity cannot be null");
@@ -44,9 +44,11 @@ public class AbstractService<T extends AbstractEntity, R extends Dto<T>> extends
 
         T entity = genericMapper.map(dto);
 
-        if(entity.getId() == null) {
+        if(id == null) {
             throw new IllegalArgumentException("Id cannot be null");
         }
+
+        entity.setId(id);
 
         return genericMapper.map(repository.save(entity));
     }
@@ -63,5 +65,12 @@ public class AbstractService<T extends AbstractEntity, R extends Dto<T>> extends
             @PageableDefault(direction = Sort.Direction.DESC, sort = "createdAt") Pageable pageable
     ) {
         return genericMapper.map(jpaSpecificationExecutor.findAll(getSpecification(queryParams), pageable));
+    }
+
+    public R get(UUID id) {
+        if(id == null) {
+            throw new IllegalArgumentException("Id cannot be null");
+        }
+        return genericMapper.map(repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Entity not found")));
     }
 }

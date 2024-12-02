@@ -21,13 +21,18 @@ public class AbstractController<T extends AbstractEntity, R extends Dto<T>> impl
     }
 
     @Override
-    public R update(Long id, R r) {
-        return service.update(r);
+    public R update(UUID id, R r) {
+        return service.update(id, r);
     }
 
     @Override
     public void delete(UUID id) {
         service.delete(id);
+    }
+
+    @Override
+    public R get(UUID id) {
+        return service.get(id);
     }
 
     @Override

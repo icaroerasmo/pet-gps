@@ -1,8 +1,10 @@
 package com.icaroerasmo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.icaroerasmo.entity.PetLocalization;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -15,6 +17,8 @@ public class PetLocalizationDto implements Dto<PetLocalization> {
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
     private UUID petId;
-    private long latitude;
-    private long longitude;
+    @JsonFormat(pattern = "%.6f")
+    private Double latitude;
+    @JsonFormat(pattern = "%.6f")
+    private Double longitude;
 }

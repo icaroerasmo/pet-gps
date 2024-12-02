@@ -19,6 +19,6 @@ public class Pet extends AbstractEntity {
     @Column(nullable = false)
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pet")
     private List<PetLocalization> localizationHistory;
 }

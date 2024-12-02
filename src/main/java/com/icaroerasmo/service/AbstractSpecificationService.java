@@ -39,16 +39,16 @@ public abstract class AbstractSpecificationService<T> {
                     predicates.add(inClause);
                 });
         if(keys.contains("createdAtBeginning")) {
-                predicates.add(cb.greaterThanOrEqualTo(root.get("createdAt"), queryParams.get("createdAtBeginning").get(0)));
+                predicates.add(cb.greaterThanOrEqualTo(root.get("createdAt"), queryParams.get("createdAtBeginning").getFirst()));
         }
         if(keys.contains("createdAtEnd")) {
-            predicates.add(cb.greaterThanOrEqualTo(root.get("createdAt"), queryParams.get("createdAtEnd").get(0)));
+            predicates.add(cb.greaterThanOrEqualTo(root.get("createdAt"), queryParams.get("createdAtEnd").getFirst()));
         }
         if(keys.contains("updatedAtBeginning")) {
-            predicates.add(cb.greaterThanOrEqualTo(root.get("updatedAt"), queryParams.get("updatedAtBeginning").get(0)));
+            predicates.add(cb.greaterThanOrEqualTo(root.get("updatedAt"), queryParams.get("updatedAtBeginning").getFirst()));
         }
         if(keys.contains("updatedAtEnd")) {
-            predicates.add(cb.greaterThanOrEqualTo(root.get("updatedAt"), queryParams.get("updatedAtEnd").get(0)));
+            predicates.add(cb.greaterThanOrEqualTo(root.get("updatedAt"), queryParams.get("updatedAtEnd").getFirst()));
         }
     }
 }
